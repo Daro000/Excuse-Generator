@@ -56,6 +56,11 @@ const ExcuseGenerator: React.FC = () => {
             </label>
             <button onClick={generateExuse}>Generuj wymowke</button>
             <button onClick={clearExcuses}>Wyczysc wymowki</button>
+            <ul>
+                {excuseList.map((excuse,index)=>(
+                    <li key={index}>{excuse}</li>
+                    ))}
+            </ul>
         </div>
     )
 }
