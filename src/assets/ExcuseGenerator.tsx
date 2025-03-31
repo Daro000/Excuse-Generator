@@ -14,14 +14,17 @@ const ExcuseGenerator: React.FC = () => {
         return savedExcuses ? JSON.parse(savedExcuses) : [];
     });
 
-    function generateExuse(){
+    function generateExuse() {
         const newExcuse = `${name}, niestety ${reason}, ponieważ ${details}. Poziom wiarygodności: ${credibility}, data: ${date}, kreatywność: ${creativity}, ${urgent ? "pilne" : "niepilne"}.`;
-        const updatedList = [...excuseList,newExcuse];
+        const updatedList = [...excuseList, newExcuse];
         setExcuseList(updatedList)
         localStorage.setItem("wymowki", JSON.stringify(updatedList))
     }
 
-
+    function clearExcuses() {
+        localStorage.removeItem("wymowki");
+        setExcuseList([]);
+    }
 
 }
 
