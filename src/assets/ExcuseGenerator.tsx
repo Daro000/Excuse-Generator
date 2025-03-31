@@ -26,13 +26,16 @@ const ExcuseGenerator: React.FC = () => {
         setExcuseList([]);
     }
 
+    function handleReasonChange(e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
+
+    }
 
     return(
         <div>
             <h2>Excuse Generator</h2>
-            <input type="text" placeholder="imie" value={name} onChange/>
+            <input type="text" placeholder="imie" value={name} onChange={handleReasonChange}/>
 
-            <select value={reason} onChange={}>
+            <select value={reason} onChange={handleReasonChange}>
                     <option>spoznienie</option>
                     <option>brak pracy domowej</option>
                     <option>brak odpowiedzi na wiadomosc</option>
@@ -40,8 +43,8 @@ const ExcuseGenerator: React.FC = () => {
                     <option>nagly wypadek</option>
             </select>
 
-            <input type="range" min="1" max="10" value={credibility} onChange={}/>
-            <input type="date" value={date} onChange={}/>
+            <input type="range" min="1" max="10" value={credibility} onChange={handleReasonChange}/>
+            <input type="date" value={date} onChange={handleReasonChange}/>
             <select value={creativity}>
                 <option>Mała</option>
                 <option>Średnia</option>
@@ -50,9 +53,9 @@ const ExcuseGenerator: React.FC = () => {
                 <option>Ekstremalna</option>
             </select>
 
-            <textarea placeholder="Może podasz jakies szczegóły??" value={details} onChange={}/>
+            <textarea placeholder="Może podasz jakies szczegóły??" value={details} onChange={handleReasonChange}/>
             <label>
-                <input type="checkbox" checked={urgent} onChange={}/>
+                <input type="checkbox" checked={urgent} onChange={handleReasonChange}/>
             </label>
             <button onClick={generateExuse}>Generuj wymowke</button>
             <button onClick={clearExcuses}>Wyczysc wymowki</button>
