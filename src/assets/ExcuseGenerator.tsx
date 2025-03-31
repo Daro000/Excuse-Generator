@@ -19,6 +19,7 @@ const ExcuseGenerator: React.FC = () => {
         const updatedList = [...excuseList, newExcuse];
         setExcuseList(updatedList)
         localStorage.setItem("wymowki", JSON.stringify(updatedList))
+
     }
 
     function clearExcuses() {
@@ -26,16 +27,45 @@ const ExcuseGenerator: React.FC = () => {
         setExcuseList([]);
     }
 
-    function handleReasonChange(e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
+    function handleInputChange(
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    ) {
+        const { name, value, type, checked } = e.target as HTMLInputElement;
 
+        switch (name) {
+            case "name":
+                setName(value);
+                break;
+            case "reason":
+                setReason(value);
+                break;
+            case "credibility":
+                setCredibility(Number(value));
+                break;
+            case "date":
+                setDate(value);
+                break;
+            case "creativity":
+                setCreativity(value);
+                break;
+            case "details":
+                setDetails(value);
+                break;
+            case "urgent":
+                setUrgent(checked);
+                break;
+            default:
+                console.warn(`Nieobsługiwane pole: ${name}`);
+        }
     }
+
 
     return(
         <div>
             <h2>Excuse Generator</h2>
-            <input type="text" placeholder="imie" value={name} onChange={handleReasonChange}/>
+            <input type="text" name="name" placeholder="imie" value={name} onChange={handleInputChange}/>
 
-            <select value={reason} onChange={handleReasonChange}>
+            <select name="reason" value={reason} onChange={handleInputChange}>
                     <option>spoznienie</option>
                     <option>brak pracy domowej</option>
                     <option>brak odpowiedzi na wiadomosc</option>
@@ -43,9 +73,9 @@ const ExcuseGenerator: React.FC = () => {
                     <option>nagly wypadek</option>
             </select>
 
-            <input type="range" min="1" max="10" value={credibility} onChange={handleReasonChange}/>
-            <input type="date" value={date} onChange={handleReasonChange}/>
-            <select value={creativity}>
+            <input type="range" min="1" max="10" name="credibility" value={credibility} onChange={handleInputChange}/>
+            <input type="date" name="date" value={date} onChange={handleInputChange}/>
+            <select name="creativity" value={creativity} onChange={handleInputChange}>
                 <option>Mała</option>
                 <option>Średnia</option>
                 <option>Duża</option>
@@ -53,9 +83,9 @@ const ExcuseGenerator: React.FC = () => {
                 <option>Ekstremalna</option>
             </select>
 
-            <textarea placeholder="Może podasz jakies szczegóły??" value={details} onChange={handleReasonChange}/>
+            <textarea name="details" placeholder="Może podasz jakies szczegóły??" value={details} onChange={handleInputChange}/>
             <label>
-                <input type="checkbox" checked={urgent} onChange={handleReasonChange}/>
+                pilne?: <input name="urgent" type="checkbox" checked={urgent} onChange={handleInputChange}/>
             </label>
             <button onClick={generateExuse}>Generuj wymowke</button>
             <button onClick={clearExcuses}>Wyczysc wymowki</button>
