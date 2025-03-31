@@ -49,6 +49,13 @@ const ExcuseGenerator: React.FC = () => {
                 <option>Ogromna</option>
                 <option>Ekstremalna</option>
             </select>
+
+            <textarea placeholder="Może podasz jakies szczegóły??" value={details} onChange={}/>
+            <label>
+                <input type="checkbox" checked={urgent} onChange={}/>
+            </label>
+            <button onClick={generateExuse}>Generuj wymowke</button>
+            <button onClick={clearExcuses}>Wyczysc wymowki</button>
         </div>
     )
 }
