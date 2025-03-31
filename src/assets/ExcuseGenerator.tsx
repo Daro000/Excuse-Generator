@@ -26,6 +26,23 @@ const ExcuseGenerator: React.FC = () => {
         setExcuseList([]);
     }
 
+
+    return(
+        <div>
+            <h2>Excuse Generator</h2>
+            <input type="text" placeholder="imie" value={name} onChange/>
+
+            <select value={reason} onChange={}>
+                    <option>spoznienie</option>
+                    <option>brak pracy domowej</option>
+                    <option>brak odpowiedzi na wiadomosc</option>
+                    <option>udawanie ze zna sie kod</option>
+                    <option>nagly wypadek</option>
+            </select>
+
+
+        </div>
+    )
 }
 
 export default ExcuseGenerator
