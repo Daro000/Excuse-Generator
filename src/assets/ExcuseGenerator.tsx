@@ -19,6 +19,13 @@ const ExcuseGenerator: React.FC = () => {
         const updatedList = [...excuseList, newExcuse];
         setExcuseList(updatedList)
         localStorage.setItem("wymowki", JSON.stringify(updatedList))
+        setName("");
+        setReason("spóźnienie");
+        setCredibility(5);
+        setDate("");
+        setCreativity("Średnia");
+        setDetails("");
+        setUrgent(false);
 
     }
 
