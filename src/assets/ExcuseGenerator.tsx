@@ -40,7 +40,15 @@ const ExcuseGenerator: React.FC = () => {
                     <option>nagly wypadek</option>
             </select>
 
-
+            <input type="range" min="1" max="10" value={credibility} onChange={}/>
+            <input type="date" value={date} onChange={}/>
+            <select value={creativity}>
+                <option>Mała</option>
+                <option>Średnia</option>
+                <option>Duża</option>
+                <option>Ogromna</option>
+                <option>Ekstremalna</option>
+            </select>
         </div>
     )
 }
