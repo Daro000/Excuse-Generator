@@ -8,6 +8,7 @@ interface PropsExcuse {
 
 
 
+
     const ExcuseGenerator: React.FC<PropsExcuse> = ({onButtonClick}: PropsExcuse) => {
             const [name, setName] = useState<string>("");
             const [reason, setReason] = useState<string>("spóźnienie");
@@ -16,30 +17,13 @@ interface PropsExcuse {
             const [creativity, setCreativity] = useState<string>("Średnia");
             const [details, setDetails] = useState<string>("");
             const [urgent, setUrgent] = useState<boolean>(false);
-            const [excuseList, setExcuseList] = useState<Array<string>>(() => {
-                const savedExcuses = localStorage.getItem("wymowki");
-                return savedExcuses ? JSON.parse(savedExcuses) : [];
-            });
+            // const [excuseList, setExcuseList] = useState<Array<string>>(() => {
+            //     const savedExcuses = localStorage.getItem("wymowki");
+            //     return savedExcuses ? JSON.parse(savedExcuses) : [];
+            // });
 
-    // function generateExuse() {
-    //     const newExcuse = `${name}, niestety ${reason}, ponieważ ${details}. Poziom wiarygodności: ${credibility}, data: ${date}, kreatywność: ${creativity}, ${urgent ? "pilne" : "niepilne"}.`;
-    //     const updatedList = [...excuseList, newExcuse];
-    //     setExcuseList(updatedList)
-    //     localStorage.setItem("wymowki", JSON.stringify(updatedList))
-    //     setName("");
-    //     setReason("spóźnienie");
-    //     setCredibility(5);
-    //     setDate("");
-    //     setCreativity("Średnia");
-    //     setDetails("");
-    //     setUrgent(false);
-    //
-    // }
-    //
-    // function clearExcuses() {
-    //     localStorage.removeItem("wymowki");
-    //     setExcuseList([]);
-    // }
+
+
 
     function handleInputChange(
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -103,11 +87,6 @@ interface PropsExcuse {
             </label>
             <button onClick={() => onButtonClick(`${name}, niestety ${reason}, ponieważ ${details}. Poziom wiarygodności: ${credibility}, data: ${date}, kreatywność: ${creativity}, ${urgent ? "pilne" : "niepilne"}.`)}>Generuj wymowke</button>
             <button >Wyczysc wymowki</button>
-            <ul>
-                {/*{excuseList.map((excuse,index)=>(*/}
-                {/*    <li key={index}>{excuse}</li>*/}
-                {/*    ))}*/}
-            </ul>
         </div>
 
 

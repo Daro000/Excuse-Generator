@@ -2,6 +2,9 @@
 import './App.css'
 import ExcuseGenerator from "./ExcuseGenerator.tsx";
 import {useState} from "react";
+import ExcuseList from "./ExcuseList.tsx";
+
+
 
 function App() {
 
@@ -13,11 +16,10 @@ function App() {
     }
 
 
-
   return (
     <>
         <ExcuseGenerator onButtonClick={onButtonClick2}/>
-        {/*<2 listWymowek={listaWym}>/>*/}
+        <ExcuseList listaWymowek={listaWym}/>
     </>
   )
 }
