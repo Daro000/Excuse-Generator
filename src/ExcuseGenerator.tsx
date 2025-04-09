@@ -17,10 +17,7 @@ interface PropsExcuse {
             const [creativity, setCreativity] = useState<string>("Średnia");
             const [details, setDetails] = useState<string>("");
             const [urgent, setUrgent] = useState<boolean>(false);
-            // const [excuseList, setExcuseList] = useState<Array<string>>(() => {
-            //     const savedExcuses = localStorage.getItem("wymowki");
-            //     return savedExcuses ? JSON.parse(savedExcuses) : [];
-            // });
+
 
 
 
@@ -56,7 +53,18 @@ interface PropsExcuse {
                 console.warn(`Nieobsługiwane pole: ${name}`);
         }
     }
+        const generateExcuse = () => {
+            const excuseMessage = `${name}, niestety ${reason}, ponieważ ${details}. Poziom wiarygodności: ${credibility}, data: ${date}, kreatywność: ${creativity}, ${urgent ? "pilne" : "niepilne"}.`;
+            onButtonClick(excuseMessage);
+            setName("");
+            setReason("spóźnienie");
+            setCredibility(5);
+            setDate("");
+            setCreativity("Średnia");
+            setDetails("");
+            setUrgent(false);
 
+        };
 
     return(
         <div>
@@ -70,8 +78,10 @@ interface PropsExcuse {
                     <option>udawanie ze zna sie kod</option>
                     <option>nagly wypadek</option>
             </select>
+            <label>Wiarygodnosc {credibility}</label>
+                <input type="range" min="1" max="10" name="credibility" value={credibility} onChange={handleInputChange}/>
 
-            <input type="range" min="1" max="10" name="credibility" value={credibility} onChange={handleInputChange}/>
+
             <input type="date" name="date" value={date} onChange={handleInputChange}/>
             <select name="creativity" value={creativity} onChange={handleInputChange}>
                 <option>Mała</option>
@@ -85,8 +95,12 @@ interface PropsExcuse {
             <label>
                 pilne?: <input name="urgent" type="checkbox" checked={urgent} onChange={handleInputChange}/>
             </label>
-            <button onClick={() => onButtonClick(`${name}, niestety ${reason}, ponieważ ${details}. Poziom wiarygodności: ${credibility}, data: ${date}, kreatywność: ${creativity}, ${urgent ? "pilne" : "niepilne"}.`)}>Generuj wymowke</button>
-            <button >Wyczysc wymowki</button>
+            <button onClick={generateExcuse}>Generuj wymowke</button>
+
+            <button>
+                Wyczysc wymowke
+
+            </button>
         </div>
 
 
