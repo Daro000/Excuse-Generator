@@ -21,37 +21,24 @@ interface PropsExcuse {
 
 
 
-    function handleInputChange(
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-    ) {
-        const { name, value, type, checked } = e.target as HTMLInputElement;
+        function handleInputChange(
+            e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+        ) {
+            const { name, value, checked, type } = e.target;
 
-        switch (name) {
-            case "name":
-                setName(value);
-                break;
-            case "reason":
-                setReason(value);
-                break;
-            case "credibility":
-                setCredibility(Number(value));
-                break;
-            case "date":
-                setDate(value);
-                break;
-            case "creativity":
-                setCreativity(value);
-                break;
-            case "details":
-                setDetails(value);
-                break;
-            case "urgent":
-                setUrgent(checked);
-                break;
-            default:
-                console.warn(`Nieobsługiwane pole: ${name}`);
+
+            const newValue = type === "checkbox" ? checked : value;
+
+            if (name === "name") setName(newValue);
+            else if (name === "reason") setReason(newValue);
+            else if (name === "credibility") setCredibility(Number(newValue));
+            else if (name === "date") setDate(newValue);
+            else if (name === "creativity") setCreativity(newValue);
+            else if (name === "details") setDetails(newValue);
+            else if (name === "urgent") setUrgent(newValue);
+            else console.warn(`Nieobsługiwane pole: ${name}`);
         }
-    }
+
         const generateExcuse = () => {
             const excuseMessage = `${name}, niestety ${reason}, ponieważ ${details}. Poziom wiarygodności: ${credibility}, data: ${date}, kreatywność: ${creativity}, ${urgent ? "pilne" : "niepilne"}.`;
             onButtonClick(excuseMessage);
