@@ -21,7 +21,6 @@ interface PropsExcuse {
 
 
 
-
     function handleInputChange(
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ) {
@@ -97,10 +96,6 @@ interface PropsExcuse {
             </label>
             <button onClick={generateExcuse}>Generuj wymowke</button>
 
-            <button>
-                Wyczysc wymowke
-
-            </button>
         </div>
 
 
