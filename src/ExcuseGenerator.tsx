@@ -1,4 +1,6 @@
 import {useState} from "react";
+import './ExcuseGenerator.css';
+
 
 interface PropsExcuse {
     onButtonClick: (v: string) => void;
@@ -63,10 +65,12 @@ interface PropsExcuse {
         };
 
     return(
-        <div>
+        <div className="excuse-container">
             <h2>Excuse Generator</h2>
+            <label>Podaj Imie:</label>
             <input type="text" name="name" placeholder="imie" value={name} onChange={handleNameChange}/>
 
+            <label>Podaj Powód</label>
             <select name="reason" value={reason} onChange={handleReasonChange}>
                     <option>spoznienie</option>
                     <option>brak pracy domowej</option>
@@ -77,8 +81,10 @@ interface PropsExcuse {
             <label>Wiarygodnosc {credibility}</label>
                 <input type="range" min="1" max="10" name="credibility" value={credibility} onChange={handleCredibilityChange}/>
 
-
+            <label>Data:</label>
             <input type="date" name="date" value={date} onChange={handleDateChange}/>
+
+            <label>Poziom kreatywnosci</label>
             <select name="creativity" value={creativity} onChange={handleCreativityChange}>
                 <option>Mała</option>
                 <option>Średnia</option>
@@ -87,6 +93,7 @@ interface PropsExcuse {
                 <option>Ekstremalna</option>
             </select>
 
+            <label>Szczegóły:</label>
             <textarea name="details" placeholder="Może podasz jakies szczegóły??" value={details} onChange={handleDetailsChange}/>
             <label>
                 pilne?: <input name="urgent" type="checkbox" checked={urgent} onChange={handleUrgentChange}/>

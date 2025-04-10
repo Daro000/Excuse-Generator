@@ -1,5 +1,5 @@
 
-import './App.css'
+
 import ExcuseGenerator from "./ExcuseGenerator.tsx";
 import {useState} from "react";
 import ExcuseList from "./ExcuseList.tsx";
@@ -33,7 +33,7 @@ function App() {
     <>
         <ExcuseGenerator onButtonClick={onButtonClick2}/>
         <ExcuseList listaWymowek={listaWym}/>
-        <button onClick={clearExcuses}>Clear Excuses</button>
+        <button onClick={clearExcuses}>Wyczysc Wymowki</button>
     </>
   )
 }
