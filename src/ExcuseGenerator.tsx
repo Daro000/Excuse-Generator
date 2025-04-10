@@ -21,22 +21,32 @@ interface PropsExcuse {
 
 
 
-        function handleInputChange(
-            e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-        ) {
-            const { name, value, checked, type } = e.target;
+        function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+            setName(e.currentTarget.value);
+        }
 
+        function handleReasonChange(e: React.ChangeEvent<HTMLSelectElement>) {
+            setReason(e.currentTarget.value);
+        }
 
-            const newValue = type === "checkbox" ? checked : value;
+        function handleCredibilityChange(e: React.ChangeEvent<HTMLInputElement>) {
+            setCredibility(Number(e.currentTarget.value));
+        }
 
-            if (name === "name") setName(newValue);
-            else if (name === "reason") setReason(newValue);
-            else if (name === "credibility") setCredibility(Number(newValue));
-            else if (name === "date") setDate(newValue);
-            else if (name === "creativity") setCreativity(newValue);
-            else if (name === "details") setDetails(newValue);
-            else if (name === "urgent") setUrgent(newValue);
-            else console.warn(`Nieobsługiwane pole: ${name}`);
+        function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
+            setDate(e.currentTarget.value);
+        }
+
+        function handleCreativityChange(e: React.ChangeEvent<HTMLSelectElement>) {
+            setCreativity(e.currentTarget.value);
+        }
+
+        function handleDetailsChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+            setDetails(e.currentTarget.value);
+        }
+
+        function handleUrgentChange(e: React.ChangeEvent<HTMLInputElement>) {
+            setUrgent(e.currentTarget.checked);
         }
 
         const generateExcuse = () => {
@@ -55,9 +65,9 @@ interface PropsExcuse {
     return(
         <div>
             <h2>Excuse Generator</h2>
-            <input type="text" name="name" placeholder="imie" value={name} onChange={handleInputChange}/>
+            <input type="text" name="name" placeholder="imie" value={name} onChange={handleNameChange}/>
 
-            <select name="reason" value={reason} onChange={handleInputChange}>
+            <select name="reason" value={reason} onChange={handleReasonChange}>
                     <option>spoznienie</option>
                     <option>brak pracy domowej</option>
                     <option>brak odpowiedzi na wiadomosc</option>
@@ -65,11 +75,11 @@ interface PropsExcuse {
                     <option>nagly wypadek</option>
             </select>
             <label>Wiarygodnosc {credibility}</label>
-                <input type="range" min="1" max="10" name="credibility" value={credibility} onChange={handleInputChange}/>
+                <input type="range" min="1" max="10" name="credibility" value={credibility} onChange={handleCredibilityChange}/>
 
 
-            <input type="date" name="date" value={date} onChange={handleInputChange}/>
-            <select name="creativity" value={creativity} onChange={handleInputChange}>
+            <input type="date" name="date" value={date} onChange={handleDateChange}/>
+            <select name="creativity" value={creativity} onChange={handleCreativityChange}>
                 <option>Mała</option>
                 <option>Średnia</option>
                 <option>Duża</option>
@@ -77,9 +87,9 @@ interface PropsExcuse {
                 <option>Ekstremalna</option>
             </select>
 
-            <textarea name="details" placeholder="Może podasz jakies szczegóły??" value={details} onChange={handleInputChange}/>
+            <textarea name="details" placeholder="Może podasz jakies szczegóły??" value={details} onChange={handleDetailsChange}/>
             <label>
-                pilne?: <input name="urgent" type="checkbox" checked={urgent} onChange={handleInputChange}/>
+                pilne?: <input name="urgent" type="checkbox" checked={urgent} onChange={handleUrgentChange}/>
             </label>
             <button onClick={generateExcuse}>Generuj wymowke</button>
 
